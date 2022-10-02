@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Find Color</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="word_is">word is</string>
+    <string name="skip">Skip</string>
+    <string name="go_it">go it</string>
+    <string name="your_scored">your scored</string>
+    <string name="play_again">play again</string>
+    <string name="play_button">play button</string>
+    <string name="title_text">title text</string>
+    <string name="get_ready">Get Ready</string>
+    <string name="quote_format">\"%S\"</string>
+    <string name="score_format">Current Score:%d</string>
+</resources>
