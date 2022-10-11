@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.hotel.view.MenuFragment"
+        android:label="MenuList" >
+        <action
+            android:id="@+id/action_menuFragment_to_menuAddFragment"
+            app:destination="@id/menuAddFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuAddFragment"
+        android:name="com.example.hotel.view.MenuAddFragment"
+        android:label="Add Menu" >
+        <action
+            android:id="@+id/action_menuAddFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+</navigation>
