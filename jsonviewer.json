@@ -16,5 +16,47 @@
     "name": "Ava Max",
     "tn_img": "https://i.ytimg.com/vi/WSX6ZRX4_-Q/hqdefault.jpg?sqp=-oaymwEbCMQBEG5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBpPV3-hySLWuVZymFJ-qPezB6_gg",
     "video_url": "https://www.youtube.com/watch?v=WSX6ZRX4_-Q&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=3"
+  },
+   {
+    "id": 4,
+    "name": "Mark Ronson",
+    "tn_img": "https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLAB4jCVirdNn6l5OYGknsRuR9a9VQ",
+    "video_url": "https://www.youtube.com/watch?v=OPf0YbXqDm0&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=4"
+  },
+  {
+    "id": 5,
+    "name": "Ava Max",
+    "tn_img": "https://i.ytimg.com/vi/qExVlz3zb0k/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBYpMePecR54u6tj0Xq1KZBy2pE4A",
+    "video_url": "https://www.youtube.com/watch?v=qExVlz3zb0k&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=5"
+  },
+   {
+    "id": 6,
+    "name": "Maroon 5",
+    "tn_img": "https://i.ytimg.com/vi/09R8_2nJtjg/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBIhwyVUq2IjRQCRtgB6WMdtYnE5A",
+    "video_url": "https://www.youtube.com/watch?v=09R8_2nJtjg&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=6"
+  },
+  {
+    "id":7,
+    "name": "Katy Perry",
+    "tn_img": "https://i.ytimg.com/vi/CevxZvSJLk8/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBl4ngIPojg2UXsUNAUwfYoPmcTOQ",
+    "video_url": "https://www.youtube.com/watch?v=CevxZvSJLk8&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=7"
+  },
+  {
+    "id":8,
+    "name": "Genevieve Stokes",
+    "tn_img": "https://i.ytimg.com/vi/MUzRyuUbOhU/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBtIZbqJ7d30BFaij3i9Uj8xR_BGw",
+    "video_url": "https://www.youtube.com/watch?v=MUzRyuUbOhU&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=8"
+  },
+  {
+    "id":9,
+    "name": "OneRepublic",
+    "tn_img": "https://i.ytimg.com/vi/hT_nvWreIhg/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLAsYzXI0TjGD18yzU7Y2XiSbEW1zw",
+    "video_url": "https://www.youtube.com/watch?v=hT_nvWreIhg&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=9"
+  },
+   {
+    "id":10,
+    "name": "Lizzo",
+    "tn_img": "https://i.ytimg.com/vi/krdQLzzAeZU/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLA3P-V17TXiNduHmOrppxyGm3FmIg",
+    "video_url": "https://www.youtube.com/watch?v=krdQLzzAeZU&list=PLhsz9CILh357zA1yMT-K5T9ZTNEU6Fl6n&index=10"
   }
 ]
