@@ -4,8 +4,8 @@
     <item
         android:drawable="@drawable/news_icon"
         android:gravity="center"
-        android:height="50dp"
-        android:width="50dp"/>
+        android:height="100dp"
+        android:width="100dp"/>
 <!--    <item android:drawable="@drawable/img" android:gravity="bottom|center_horizontal" android:width="400dp"/>-->
 
 </layer-list>

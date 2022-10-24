@@ -2,4 +2,9 @@
     <string name="app_name">News App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sport">Sport</string>
+    <string name="business">Business</string>
+    <string name="technology">Technology</string>
+    <string name="automobile">AutoMobile</string>
+    <string name="search">Search</string>
 </resources>

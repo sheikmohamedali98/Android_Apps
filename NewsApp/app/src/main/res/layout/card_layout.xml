@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.newsapp.network.Data" />
+
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,47 +26,66 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp" />
+                android:id="@+id/imageView"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:src="@drawable/img"
+                imagUrl="@{viewModel.imageUrl}"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+
+
+                />
 
             <TextView
                 android:id="@+id/authorView"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="20dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="156dp" />
+                android:layout_marginTop="156dp"
+                android:text="@{viewModel.author}"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/dateView"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="20dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="184dp" />
+                android:layout_marginTop="184dp"
+                android:height="20dp"
+                android:text="@{viewModel.date}"
+                android:textAlignment="textStart" />
 
             <TextView
                 android:id="@+id/titleView"
-                android:layout_width="238dp"
-                android:layout_height="38dp"
+                android:layout_width="250dp"
+                android:layout_height="43dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:text="@{viewModel.title}"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/contentView"
-                android:layout_width="238dp"
-                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="53dp"
-                android:layout_marginEnd="11dp"
-                android:height="150dp" />
+                android:layout_marginEnd="0dp"
+                android:height="150dp"
+                android:text="@{viewModel.content}"
+                android:textAlignment="center" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
