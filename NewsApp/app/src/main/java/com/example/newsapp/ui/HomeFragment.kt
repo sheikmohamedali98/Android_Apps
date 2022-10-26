@@ -5,12 +5,14 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.newsapp.R
 import com.example.newsapp.adapter.VideoAdapter
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.domain.DomainData
 import com.example.newsapp.viewmodel.HomeViewModel
 import com.example.newsapp.viewmodel.HomeViewModelFactory
+import kotlinx.coroutines.newSingleThreadContext
 
 
 class HomeFragment : Fragment() {
@@ -30,7 +32,11 @@ class HomeFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        val adapter = VideoAdapter()
+        val adapter = VideoAdapter().also {
+            it.setOnclickListener { news ->
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(news))
+            }
+        }
 //        val list:List<>z = DomainData("Anmol Sharma","Talking about India-Pakistan T20 World Cup 2022 match which India won on last ball","25 Oct 2022,Tuesday","faa47543c0e84474a2443e39bb701d22","https://static.inshorts.com/inshorts/images/v1/variants/jpg/m/2022/10_oct/25_tue/img_1666671280427_494.jpg?","https://www.hindustantimes.com/cricket/just-stop-the-world-cup-there-australia-star-s-mitchell-marsh-epic-remark-after-drama-filled-mcg-clash-between-india-and-pakistan-101666604175869-amp.html?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts","12121","Hello","qwertokjcvbnm,")
         binding.recycleView.adapter = adapter
 

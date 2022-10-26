@@ -6,6 +6,9 @@
         <variable
             name="viewModel"
             type="com.example.newsapp.domain.DomainData" />
+        <variable
+            name="clicker"
+            type="com.example.newsapp.adapter.VideoAdapter" />
 
     </data>
 
