@@ -7,9 +7,10 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsapp.R
 import com.example.newsapp.adapter.VideoAdapter
-import com.example.newsapp.api.NewsFilter
 import com.example.newsapp.databinding.FragmentHomeBinding
+import com.example.newsapp.domain.DomainData
 import com.example.newsapp.viewmodel.HomeViewModel
+import com.example.newsapp.viewmodel.HomeViewModelFactory
 
 
 class HomeFragment : Fragment() {
@@ -23,12 +24,26 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container,false)
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+
+        val factory = HomeViewModelFactory(requireActivity().application)
+        viewModel = ViewModelProvider(this,factory)[HomeViewModel::class.java]
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        val adapter = VideoAdapter()
+//        val list:List<>z = DomainData("Anmol Sharma","Talking about India-Pakistan T20 World Cup 2022 match which India won on last ball","25 Oct 2022,Tuesday","faa47543c0e84474a2443e39bb701d22","https://static.inshorts.com/inshorts/images/v1/variants/jpg/m/2022/10_oct/25_tue/img_1666671280427_494.jpg?","https://www.hindustantimes.com/cricket/just-stop-the-world-cup-there-australia-star-s-mitchell-marsh-epic-remark-after-drama-filled-mcg-clash-between-india-and-pakistan-101666604175869-amp.html?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts","12121","Hello","qwertokjcvbnm,")
+        binding.recycleView.adapter = adapter
 
-        binding.recycleView.adapter = VideoAdapter()
+
+        val lisSize = viewModel.listOfNews.value
+        Toast.makeText(activity, "${lisSize}", Toast.LENGTH_LONG).show()
+
+        viewModel.listOfNews.observe(viewLifecycleOwner){
+
+             adapter.submitList(it)
+                println("\n\n\n${adapter.submitList(it)}\n\n")
+        }
+
         return binding.root
     }
 

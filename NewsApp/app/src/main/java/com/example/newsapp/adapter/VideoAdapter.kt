@@ -6,25 +6,26 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.databinding.CardLayoutBinding
+import com.example.newsapp.domain.DomainData
 import com.example.newsapp.network.Data
 
-class VideoAdapter : ListAdapter<Data, VideoAdapter.ViewHolder>(DiffcallBack) {
+class VideoAdapter : ListAdapter<DomainData, VideoAdapter.ViewHolder>(DiffcallBack) {
     class ViewHolder(private var binding: CardLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Data) {
-            binding.viewModel = data
+        fun bind(domainData: DomainData) {
+            binding.viewModel = domainData
 //            binding.imageView = data.imageUrl.toString()
 //            binding.dateView = data.date
         }
     }
 
-    object DiffcallBack : DiffUtil.ItemCallback<Data>() {
-        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+    object DiffcallBack : DiffUtil.ItemCallback<DomainData>() {
+        override fun areItemsTheSame(oldItem: DomainData, newItem: DomainData): Boolean {
             return (oldItem.id).equals(newItem.id)
         }
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+        override fun areContentsTheSame(oldItem: DomainData, newItem: DomainData): Boolean {
             return oldItem == newItem
         }
 

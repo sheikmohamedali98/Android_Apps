@@ -19,15 +19,17 @@ data class Data(
 fun List<Data>.asDatabaseModel(): List<DatabaseData> {
     return map {
         DatabaseData(
-            author = it.author,
-            content = it.content,
-            date = it.date,
-            id = it.id,
-            imageUrl = it.imageUrl,
-            readMoreUrl = it.readMoreUrl,
-            time = it.time,
-            title = it.title,
-            url = it.url
+            author = it.author.toString(),
+            content = it.content.toString(),
+            date = it.date.toString(),
+            id = it.id.toString(),
+            imageUrl = it.imageUrl.toString(),
+            readMoreUrl = it.readMoreUrl.toString(),
+            time = it.time.toString(),
+            title = it.title.toString(),
+            url = it.url.toString()
         )
     }
 }
+
+

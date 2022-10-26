@@ -6,17 +6,21 @@ import com.example.newsapp.domain.DomainData
 
 @Entity(tableName = "news_database")
 data class DatabaseData(
-    val author: String?,
-    val content: String?,
-    val date: String?,
+    val author: String,
+    val content: String,
+    val date: String,
     @PrimaryKey(autoGenerate = false)
-    val id: String?,
-    val imageUrl: String?,
-    val readMoreUrl: String?,
-    val time: String?,
-    val title: String?,
-    val url: String?
+    val id: String,
+    val imageUrl: String,
+    val readMoreUrl: String,
+    val time: String,
+    val title: String,
+    val url: String
 )
+//{
+//    @PrimaryKey(autoGenerate = true)
+//    var newsId:Int = 0
+//}
 
 
 fun List<DatabaseData>.asDomainModel(): List<DomainData> {

@@ -1,9 +1,11 @@
 package com.example.newsapp.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.newsapp.network.NewsResponse
 
 @Dao
 interface DataDao {
@@ -12,9 +14,9 @@ interface DataDao {
 //    suspend fun insert(Vi)
 
     @Query("SELECT * FROM news_database")
-    fun  getNews():List<DatabaseData>
+    fun  getNews():LiveData<List<DatabaseData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNews(vararg news:DatabaseData)
+    fun insertNews(vararg news: DatabaseData?)
 
 }
