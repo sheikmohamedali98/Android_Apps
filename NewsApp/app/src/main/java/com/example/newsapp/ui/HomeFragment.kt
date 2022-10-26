@@ -1,25 +1,43 @@
 package com.example.newsapp.ui
 
+
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Geocoder
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.getSystemService
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.newsapp.R
 import com.example.newsapp.adapter.VideoAdapter
 import com.example.newsapp.databinding.FragmentHomeBinding
-import com.example.newsapp.domain.DomainData
+import com.example.newsapp.domain.weather.Location
+import com.example.newsapp.util.LoactionPermission
+
 import com.example.newsapp.viewmodel.HomeViewModel
 import com.example.newsapp.viewmodel.HomeViewModelFactory
-import kotlinx.coroutines.newSingleThreadContext
-
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import java.util.*
 
 class HomeFragment : Fragment() {
 
 //    lateinit var binding:Bin
     private  lateinit var  binding: FragmentHomeBinding
     private  lateinit var  viewModel: HomeViewModel
+    private lateinit var  locationPermission: LoactionPermission
+    private lateinit var locationManager: LocationManager
+    private val PERMISSION_ID = 1
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -30,6 +48,7 @@ class HomeFragment : Fragment() {
         val factory = HomeViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this,factory)[HomeViewModel::class.java]
 
+        locationPermission = LoactionPermission(activity as AppCompatActivity)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         val adapter = VideoAdapter().also {
@@ -41,22 +60,48 @@ class HomeFragment : Fragment() {
         binding.recycleView.adapter = adapter
 
 
-        val lisSize = viewModel.listOfNews.value
-        Toast.makeText(activity, "${lisSize}", Toast.LENGTH_LONG).show()
+//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        locationManager = (activity as MainActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager
+//        locationManager =
+//        val lisSize = viewModel.listOfNews.value
+//        Toast.makeText(activity, "${lisSize}", Toast.LENGTH_LONG).show()
 
         viewModel.listOfNews.observe(viewLifecycleOwner){
-
              adapter.submitList(it)
-                println("\n\n\n${adapter.submitList(it)}\n\n")
+//                println("\n\n\n${adapter.submitList(it)}\n\n")
+        }
+//getPermission()
+//        var location = lo
+       if (ActivityCompat.checkSelfPermission(activity as MainActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                activity as MainActivity,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(activity as MainActivity,
+                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSION_ID)
+        }
+          val location =   locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+
+        var cityName:String ="Not Found"
+       if (location != null) {
+           cityName = locationPermission.geoCoderConverter(location.latitude,
+               location.longitude)?.subAdminArea.toString()
+            Toast.makeText(activity, "${cityName}", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.over_flow_menu,menu)
-    }
+//    private fun permissionCheck() {
+//        TODO("Not yet implemented")
+//    }
+
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.over_flow_menu,menu)
+//    }
 
 //
 //    override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -81,6 +126,68 @@ class HomeFragment : Fragment() {
     }
         return super.onOptionsItemSelected(item)
     }
+
+
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        when (requestCode) {
+//            1 -> {
+//                if (grantResults.isNotEmpty() && grantResults[0] ==
+//                    PackageManager.PERMISSION_GRANTED
+//                ) {
+//                    if ((context?.let {
+//                            ContextCompat.checkSelfPermission(it,
+//                                Manifest.permission.ACCESS_FINE_LOCATION)
+//                        } ===
+//                                PackageManager.PERMISSION_GRANTED)) {
+//                        Toast.makeText(activity, "Permission Granted", Toast.LENGTH_SHORT).show()
+//                    }
+//                } else {
+//                    Toast.makeText(activity, "Permission Denied", Toast.LENGTH_SHORT).show()
+//                }
+//                return
+//            }
+//        }
+//
+//
+//        fun permissionCheck() {
+//            if (context?.let {
+//                    ContextCompat.checkSelfPermission(it,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+//                } !==
+//                PackageManager.PERMISSION_GRANTED) {
+//                if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity,
+//                        Manifest.permission.ACCESS_FINE_LOCATION)
+//                ) {
+//                    ActivityCompat.requestPermissions(context as Activity,
+//                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+//                } else {
+//                    ActivityCompat.requestPermissions(context as Activity,
+//                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+//                }
+//            }
+//        }
+//
+//    }
+
+    fun getPermission(){
+
+        if(locationPermission.checkPermission()){
+            locationPermission.requestPermission()
+        }
     }
+
+
+
+    }
+//fun getCityName(longtitude:Double,latitude:Double){
+//
+//    var cityName:String = "NotFound"
+//    val geocoder = Geocoder(MainActivity)
+//
+//}
 
 
