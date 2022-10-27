@@ -39,7 +39,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater,container,false)
 
         val factory = HomeViewModelFactory(requireActivity().application)
@@ -51,7 +50,6 @@ class HomeFragment : Fragment() {
         val adapter = VideoAdapter(VideoAdapter.OnClickListener{
             viewModel.displayData(it)
         })
-//        val list:List<>z = DomainData("Anmol Sharma","Talking about India-Pakistan T20 World Cup 2022 match which India won on last ball","25 Oct 2022,Tuesday","faa47543c0e84474a2443e39bb701d22","https://static.inshorts.com/inshorts/images/v1/variants/jpg/m/2022/10_oct/25_tue/img_1666671280427_494.jpg?","https://www.hindustantimes.com/cricket/just-stop-the-world-cup-there-australia-star-s-mitchell-marsh-epic-remark-after-drama-filled-mcg-clash-between-india-and-pakistan-101666604175869-amp.html?utm_campaign=fullarticle&utm_medium=referral&utm_source=inshorts","12121","Hello","qwertokjcvbnm,")
         binding.recycleView.adapter = adapter
 
 
@@ -63,20 +61,15 @@ class HomeFragment : Fragment() {
             }
         })
 
-//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         locationManager = (activity as MainActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager
-//        locationManager =
-//        val lisSize = viewModel.listOfNews.value
-//        Toast.makeText(activity, "${lisSize}", Toast.LENGTH_LONG).show()
+
 
         viewModel.listOfNews.observe(viewLifecycleOwner){
              adapter.submitList(it)
-//                println("\n\n\n${adapter.submitList(it)}\n\n")
         }
         setHasOptionsMenu(true)
-//getPermission()
-//        var location = lo
+
        if (ActivityCompat.checkSelfPermission(activity as MainActivity,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 activity as MainActivity,
@@ -89,39 +82,23 @@ class HomeFragment : Fragment() {
         }
           val location =   locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
 
-        var cityName:String ="Not Found"
+
+        var cityName:String ="madurai"
        if (location != null) {
            cityName = locationPermission.geoCoderConverter(location.latitude,
                location.longitude)?.subAdminArea.toString()
-            Toast.makeText(activity, "${cityName}", Toast.LENGTH_SHORT).show()
         }
-
+        Toast.makeText(activity, "${cityName}", Toast.LENGTH_LONG).show()
+        viewModel.getWeather(cityName)
+        binding.weatherTv.text = viewModel.getWeather(cityName).toString()
         return binding.root
     }
 
-//    private fun permissionCheck() {
-//        TODO("Not yet implemented")
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.over_flow_menu,menu)
     }
 
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId) {
-//            R.id.sport->viewModel.getNewsProperties("sports")
-//
-//        }
-////            viewModel.updateFilter(  when(item.itemId){
-////                R.id.sport->viewModel.getNewsProperties("sports")
-////                R.id.business->NewsFilter.BUSINESS
-////                R.id.autoMobile->NewsFilter.AUTOMOBILE
-////                R.id.technology->NewsFilter.TECHNOLOGY
-////                else -> {NewsFilter.ALL}
-////            })
-//                return super.onOptionsItemSelected(item);
-//        }
     override  fun onOptionsItemSelected(item: MenuItem): Boolean {
   viewModel.updateFilter(  when(item.itemId){
         R.id.sport->NewsFilter.SPORT

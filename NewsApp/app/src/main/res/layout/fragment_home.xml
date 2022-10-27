@@ -15,12 +15,22 @@
     tools:context=".ui.HomeFragment"
     android:background="#FD8A94">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_container_view"
+        android:name="com.example.newsapp.ui.HomeFragment"
+        android:tag="my_tag">
+
+    </androidx.fragment.app.FragmentContainerView>
+
+
     <TextView
         android:id="@+id/weather_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:text="@{viewModel.weatherProperties}"
+        android:text="@{viewModel.myResponse.location.localtime}"
         app:layout_constraintBottom_toTopOf="@+id/recycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -2,18 +2,16 @@ package com.example.newsapp.viewmodel
 
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.newsapp.api.NewsApi
 import com.example.newsapp.api.NewsFilter
-import com.example.newsapp.api.WeatherApi
 import com.example.newsapp.database.getInstance
 import com.example.newsapp.domain.DomainData
-import com.example.newsapp.domain.weather.Current
+import com.example.newsapp.domain.weather.WeatherResponse
 import com.example.newsapp.repository.NewsRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application):AndroidViewModel(application) {
@@ -45,11 +43,11 @@ class HomeViewModel(application: Application):AndroidViewModel(application) {
 //        }
 //    }
 
+    private  val _myResponse = MutableLiveData<WeatherResponse>()
 
-    private val _weatherProperties = MutableLiveData<String?>()
+    val myResponse:LiveData<WeatherResponse>
+    get() = _myResponse
 
-    val weatherProperties: MutableLiveData<String?>
-    get() = _weatherProperties
 
     private val _navigateToSelectedNews = MutableLiveData<DomainData?>()
 
@@ -59,33 +57,70 @@ class HomeViewModel(application: Application):AndroidViewModel(application) {
     private val database = getInstance(application)
     private  val  newsRepository = NewsRepository(database)
 
-    init {
+
+            init {
 
         getProperties(NewsFilter.ALL)
 //        getWeather()
+//        getWeatherPropertiessss()
     }
 
     fun getProperties(filter: NewsFilter){
         viewModelScope.launch {
-            newsRepository.refreshNews(filter.value)
+            try {
+                newsRepository.refreshNews(filter.value)
+            }catch (t:Throwable){
+
+            }
         }
     }
     val listOfNews = newsRepository.newsList
 
-//    filter: String
+//    fun getWeatherPropertiessss(){
+//        viewModelScope.launch {
+//            try {
+//                newsRepository.getWeather("chennai")
+//            }catch (t:Throwable){
+//
+//            }
+//        }
+//    }
 
-    fun getWeather(){
-        viewModelScope.launch(Dispatchers.IO) {
-            val getResponse = WeatherApi.weatherService.getWeather()
-            if(getResponse.isSuccessful){
-                val item = getResponse.body()?.current?:"NULL"
-                _weatherProperties.value = item.toString()
-            }
-            else{
-                _weatherProperties.value = "cannot proifghjk"
-            }
+    fun getWeather(cityName: String){
+
+        viewModelScope.launch {
+            val response = newsRepository.getWeatherList(cityName)
+            _myResponse.value = response
+            Log.i("TAG", _myResponse.value!!.location.name.toString())
         }
     }
+
+//    filter: String
+
+//    fun getWeather1(){
+//        viewModelScope.launch(Dispatchers.IO) {
+//            val getResponse = WeatherApi.weatherService.getWeather()
+//            if(getResponse.isSuccessful){
+//                val item = getResponse.body()?.current?:"NULL"
+//                _weatherProperties.value = item
+//            }
+//            else{
+//                _weatherProperties.value = "cannot proifghjk"
+//            }
+//        }
+//    }
+
+//    getWeather(){
+//        viewModelScope.launch {
+//
+//        }
+//    }
+
+//    fun getWeather(location: Location) {
+//        viewModelScope.launch {
+//            strangerRepository.getWeatherDetailsFromNetworkForHome(location.latitude, location.longitude, API_WEATHER_KEY_2)
+//        }
+//    }
 
     fun displayData(domainData: DomainData){
         _navigateToSelectedNews.value = domainData
