@@ -19,4 +19,8 @@ interface DataDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNews(vararg news: DatabaseData?)
 
+    @Query("DELETE FROM news_database")
+    fun deletNews()
+
+
 }

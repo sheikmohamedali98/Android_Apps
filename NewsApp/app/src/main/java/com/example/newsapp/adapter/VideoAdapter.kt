@@ -2,36 +2,32 @@ package com.example.newsapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsapp.R
 import com.example.newsapp.databinding.CardLayoutBinding
 import com.example.newsapp.domain.DomainData
-import com.example.newsapp.network.Data
-import com.example.newsapp.viewmodel.DetailViewModel
 
-class VideoAdapter : ListAdapter<DomainData, VideoAdapter.ViewHolder>(DiffcallBack) {
+class VideoAdapter(private  val onClickListener: OnClickListener) : ListAdapter<DomainData, VideoAdapter.ViewHolder>(DiffcallBack) {
 
-    private var clickListener:((domianData:DomainData)->Unit)? = null
+//    private var clickListener:((domianData:DomainData)->Unit)? = null
 
     class ViewHolder(private var binding: CardLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(domainData: DomainData,clickListener:((domianData:DomainData)->Unit)?) {
+        fun bind(domainData: DomainData) {
             binding.viewModel = domainData
-            binding.cardView.setOnClickListener{
-                DetailViewModel.url = domainData.url.toString()
-                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailFragment)
-            }
+//            binding.cardView.setOnClickListener{
+////                WebViewViewModel.url = domainData.url.toString()
+//
+////                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailFragment)
+//            }
 //            binding.imageView = data.imageUrl.toString()
 //            binding.dateView = data.date
-            clickListener?.let {
-                binding.root.setOnClickListener {
-                    clickListener.invoke(domainData)
-                }
-            }
+//            clickListener?.let {
+//                binding.root.setOnClickListener {
+//                    clickListener.invoke(domainData)
+//                }
+//            }
         }
     }
 
@@ -52,10 +48,16 @@ class VideoAdapter : ListAdapter<DomainData, VideoAdapter.ViewHolder>(DiffcallBa
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = getItem(position)
-        holder.bind(data,clickListener)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(data)
+        }
+        holder.bind(data)
     }
 
-    fun setOnclickListener(clickListener:((domianData:DomainData)->Unit)){
-        this.clickListener = clickListener
-    }
+//    fun setOnclickListener(clickListener:((domianData:DomainData)->Unit)){
+//        this.clickListener = clickListener
+//    }
+class OnClickListener(val clickListener:(dominData:DomainData)->Unit){
+    fun onClick(domianData: DomainData) = clickListener(domianData)
+}
 }

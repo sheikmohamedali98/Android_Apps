@@ -8,20 +8,18 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
 import com.example.newsapp.R
-import com.example.newsapp.databinding.CardLayoutBinding
 import com.example.newsapp.databinding.FragmentDetailBinding
-import com.example.newsapp.viewmodel.DetailViewModel
-import com.example.newsapp.viewmodel.DetailViewModelFactory
+import com.example.newsapp.viewmodel.WebViewViewModel
+import com.example.newsapp.viewmodel.WebViewViewModelFactory
 
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
-    private val detailViewModel:DetailViewModel by lazy{
+    private val detailViewModel:WebViewViewModel by lazy{
         var activity = requireNotNull(activity?.application)
 
-        ViewModelProvider(this, DetailViewModelFactory(activity))[DetailViewModel::class.java]
+        ViewModelProvider(this, WebViewViewModelFactory(activity))[WebViewViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -34,7 +32,7 @@ class DetailFragment : Fragment() {
 
 //        val args:DetailFragmentArgs by navArgs()
         binding.webView.webViewClient = WebViewClient()
-        binding.webView.loadUrl(DetailViewModel.url)
+        binding.webView.loadUrl(WebViewViewModel.url)
         binding.webView.settings.javaScriptEnabled = true
 
         return binding.root

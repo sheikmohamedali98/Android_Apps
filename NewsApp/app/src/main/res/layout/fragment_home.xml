@@ -12,21 +12,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.HomeFragment"
+    android:background="#FD8A94">
+
+    <TextView
+        android:id="@+id/weather_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="@{viewModel.weatherProperties}"
+        app:layout_constraintBottom_toTopOf="@+id/recycleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:textSize="30sp"
         android:orientation="vertical"
+        android:textSize="30sp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toBottomOf="@id/weather_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

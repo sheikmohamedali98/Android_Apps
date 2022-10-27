@@ -3,12 +3,14 @@ package com.example.newsapp.viewmodel
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.newsapp.domain.DomainData
+import com.example.newsapp.ui.DetailNewsFragmentArgs
 
-class DetailViewModelFactory(var application: Application) : ViewModelProvider.Factory{
+class DetailViewModelFactory(private val domainData: DomainData, val application: Application):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DetailViewModel::class.java)){
-            return DetailViewModel::class.java as T
+        if(modelClass.isAssignableFrom(DetailsViewModel::class.java)){
+            return DetailsViewModel(domainData,application) as T
         }
-        throw IllegalArgumentException("Model Class Not Found")
+        throw  IllegalArgumentException("Factory not Create")
     }
 }
