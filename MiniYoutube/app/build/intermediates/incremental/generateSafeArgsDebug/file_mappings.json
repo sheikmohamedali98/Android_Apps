@@ -1,0 +1,1 @@
+[{"navFile":"src\\main\\res\\navigation\\nav_graph.xml","javaFiles":["com.example.miniyoutube.ui.HomeFragmentDirections","com.example.miniyoutube.ui.VideoFragmentDirections","com.example.miniyoutube.ui.VideoFragmentArgs","com.example.miniyoutube.WebviewFragmentDirections","com.example.miniyoutube.WeatherFragmentArgs"]}]

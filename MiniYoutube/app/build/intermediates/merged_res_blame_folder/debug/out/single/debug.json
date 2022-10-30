@@ -1,0 +1,150 @@
+[
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\layout_video_layout.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\layout\\video_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\layout_fragment_play.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\layout\\fragment_play.xml"
+    },
+    {
+        "merged": "com.example.miniyoutube.app-merged_res-60:/navigation_nav_graph.xml.flat",
+        "source": "com.example.miniyoutube.app-main-62:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\navigation_nav_graph.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\layout_fragment_webview.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\layout\\fragment_webview.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_splash_screen.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\splash_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_text.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\text.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_weather.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\weather.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\layout_linear_layout.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\layout\\linear_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_ic_baseline_play_circle_outline_24.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\ic_baseline_play_circle_outline_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable-v24_img.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable-v24\\img.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_youtube_icon.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\youtube_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable_loading_animation.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\drawable\\loading_animation.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-pngs-55:\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.miniyoutube.app-merged_res-60:/layout_fragment_weather.xml.flat",
+        "source": "com.example.miniyoutube.app-main-62:/layout/fragment_weather.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-main-62:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-merged_res-60:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Windows\\.gradle\\daemon\\7.4\\com.example.miniyoutube.app-debug-61:\\mipmap-xxxhdpi\\ic_launcher.png"
+    }
+]
