@@ -48,9 +48,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-//locatio
-    implementation "com.google.android.gms:play-services-location:21.0.0"
 
+    //location
+    implementation "com.google.android.gms:play-services-location:21.0.0"
+    //youtube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
     //splashScreen
     implementation("androidx.core:core-splashscreen:1.0.0")
     //card view
@@ -83,6 +85,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
 
+//    implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+//
+//    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+
+    implementation "io.coil-kt:coil:1.3.0"
     //navigation
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")

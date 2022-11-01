@@ -9,8 +9,8 @@ import com.example.miniyoutube.R
 import com.example.miniyoutube.databinding.LinearLayoutBinding
 import com.example.miniyoutube.domain.VideoModel
 
-//(private  val onClickListner: VideoAdapter.OnClickListner)
-class VideoAdapter:ListAdapter<VideoModel,VideoAdapter.VideoViewHolder>(DiffCallBack) {
+//
+class VideoAdapter(private  val onClickListner: OnClickListner):ListAdapter<VideoModel,VideoAdapter.VideoViewHolder>(DiffCallBack) {
 
     class VideoViewHolder(private var binding: LinearLayoutBinding):RecyclerView.ViewHolder(binding.root){
 
@@ -38,6 +38,10 @@ class VideoAdapter:ListAdapter<VideoModel,VideoAdapter.VideoViewHolder>(DiffCall
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
 
         val videoModel = getItem(position)
+
+        holder.itemView.setOnClickListener {
+            onClickListner.onClick(videoModel)
+        }
         holder.bind(videoModel)
 //        holder.itemView.setOnClickListener {
 //            onClickListner.onClick(videoModel)

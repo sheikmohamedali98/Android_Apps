@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.miniyoutube.domain.VideoModel
 
-class VideoViewModel( videoModel: VideoModel,application: Application): AndroidViewModel(application) {
+class VideoViewModel( videoModel: VideoModel):ViewModel(){
 
     private val _videoProperty = MutableLiveData<VideoModel>()
 

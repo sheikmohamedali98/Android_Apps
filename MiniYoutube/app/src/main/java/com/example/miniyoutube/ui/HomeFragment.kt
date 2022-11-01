@@ -8,6 +8,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.miniyoutube.R
 import com.example.miniyoutube.adapter.VideoAdapter
 import com.example.miniyoutube.databinding.FragmentHomeBinding
 import com.example.miniyoutube.viewmodel.HomeViewModel
@@ -31,9 +33,8 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel:HomeViewModel
     private lateinit var client: FusedLocationProviderClient
     private val PERMISSION_CODE = 1
-//    lateinit var location: Location
-//    private lateinit var latitude:String
-//    private lateinit var lontitude:String
+    private lateinit var latitude:String
+    private lateinit var lontitude:String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -43,38 +44,38 @@ class HomeFragment : Fragment() {
 //        binding = ?
 
        val factory =HomeViewModelFactory(requireActivity().application)
-        val adapter = VideoAdapter()
+        val adapter = VideoAdapter(VideoAdapter.OnClickListner{
+            viewModel.displayPhoto(it)
+        })
 
 
         viewModel = ViewModelProvider(this,factory)[HomeViewModel::class.java]
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.recycleView.adapter = adapter
-//        binding.recycleView.adapter = VideoAdapter(VideoAdapter.OnClickListner{
-////          ad
-//        })
-//
-//        viewModel.response.observe(viewLifecycleOwner, Observer {
-//            adapter.submitList(it)
-//        })
 
 
 
-//       latitude = location.latitude.toString()
-//        lontitude = location.longitude.toString()
+        viewModel.navigateVideo.observe(viewLifecycleOwner, Observer {
+            if(it!==null){
+              this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToVideoFragment(it))
+                Toast.makeText(activity, it.toString(), Toast.LENGTH_SHORT).show()
+                viewModel.displayphotoCompleted()
+            }
+        })
+
+
 
         client = LocationServices.getFusedLocationProviderClient(requireActivity())
-//            var  id= android.os.Process.myPid();
-//        println("\n\n\n\n${id}\n\n\n\n")
+
 
         binding.floatingActionButton.setOnClickListener {
             getCurrentLocation()
-//            val action = HomeFragmentDirections.actionHomeFragmentToWeatherFragment(latitude,lontitude)
-//            findNavController().navigate(action)
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToWeatherFragment())
+
         }
 
         viewModel.playList.observe(viewLifecycleOwner, Observer {
-//            Toast.makeText(activity, adapter.submitList(it).toString(), Toast.LENGTH_SHORT).show()
             adapter.submitList(it)
         })
         return binding.root
@@ -92,7 +93,7 @@ class HomeFragment : Fragment() {
 //                client.getCurrentLocation()
                 client.lastLocation.addOnCompleteListener(requireActivity()) { task ->
 
-                     val location:Location = task.result
+                    val location: Location? = task.result
 
                     if (location == null) {
                         Toast.makeText(activity, "Null return ", Toast.LENGTH_SHORT).show()
@@ -101,12 +102,12 @@ class HomeFragment : Fragment() {
 //                        viewModel.lattitude.observe(requireActivity(), Observer {
 //                            binding.lattiyudeAns.text = location?.latitude.toString()
 //                        })
-//                        viewModel.longtitude.observe(requireActivity(), Observer {
-//                            lontitude = location?.longitude.toString()
-//                        })
-//                        viewModel.latitude.observe(requireActivity(), Observer {
-//                            latitude = location.latitude.toString()
-//                        })
+                        viewModel.longtitude.observe(requireActivity(), Observer {
+                            lontitude = location?.longitude.toString()
+                        })
+                        viewModel.latitude.observe(requireActivity(), Observer {
+                            latitude = location.latitude.toString()
+                        })
 //                        binding.lattiyudeAns.text = location.latitude.toString()
 //                        binding.lontitudeAns.text = location.longitude.toString()
 //                        Toast.makeText(activity, location.latitude.toString(), Toast.LENGTH_SHORT).show()

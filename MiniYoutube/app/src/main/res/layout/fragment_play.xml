@@ -14,16 +14,39 @@
     tools:context=".VideoFragment">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginBottom="431dp"
-        app:imagUrl="@{viewModel.videoProperty.tn_img}"
+        imagUrl="@{viewModel.videoProperty.tn_img}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/youtube_icon"/>
 
+    <TextView
+        android:id="@+id/detailTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@{viewModel.videoProperty.name}"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
+    <ImageButton
+        android:id="@+id/playBtn"
+        android:layout_width="281dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="92dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/youtube_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailTextTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -33,6 +33,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val longtitude: LiveData<String>
         get() = _longtitude
 
+    private val _navigateVideo = MutableLiveData<VideoModel?>()
+    val navigateVideo:LiveData<VideoModel?>
+    get() = _navigateVideo
+
     private val database = getInstance(application)
     private val videoRepository = VideoRepository(database)
     val playList = videoRepository.videoList
@@ -72,8 +76,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 //        viewModelJob.cancel()
 //    }
 
-    fun displayPhoto(it: VideoModel) {
-
+    fun displayPhoto(videoModel: VideoModel) {
+        _navigateVideo.value = videoModel
+    }
+    fun displayphotoCompleted(){
+        _navigateVideo.value = null
     }
 
 }

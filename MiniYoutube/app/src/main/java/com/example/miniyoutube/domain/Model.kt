@@ -1,12 +1,15 @@
 package com.example.miniyoutube.domain
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class VideoModel(
     val id:Int,
     val name: String?,
     val tn_img: String?,
     val video_url: String?
-    )
+    ):Parcelable
 
 //    :Parcelable {
 //    constructor(parcel: Parcel) : this(
