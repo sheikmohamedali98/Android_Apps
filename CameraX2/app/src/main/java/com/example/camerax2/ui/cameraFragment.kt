@@ -3,6 +3,8 @@ package com.example.camerax2.ui
 import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.request.RequestOptions
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -36,17 +39,18 @@ import java.util.concurrent.Executors
 class cameraFragment : Fragment() {
 
 
-    private lateinit var binding: FragmentCameraBinding
+private lateinit var binding: FragmentCameraBinding
     private lateinit var cameraExecutor: ExecutorService
     private var imageCapture: ImageCapture? = null
     private  var cameraSelector: CameraSelector? = null
-    private var lensFacing: Int = CameraSelector.LENS_FACING_BACK
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentCameraBinding.inflate(inflater,container,false)
+        cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
         val registrationManager = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             // returns boolean representind whether the
             // permission is granted or not
@@ -65,10 +69,21 @@ class cameraFragment : Fragment() {
 
         binding.imageButton.setOnClickListener {
             takePhoto()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                autoFlash()
+            }
         }
-//        binding.cameraSwithc.setOnClickListener {
-//          cameraSelector =  CameraSelector.DEFAULT_FRONT_CAMERA
-//        }
+
+        binding.switchbtn.setOnClickListener {
+            Toast.makeText(activity, cameraSelector.toString(), Toast.LENGTH_SHORT).show()
+         cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA){
+             CameraSelector.DEFAULT_FRONT_CAMERA
+         }else{
+             CameraSelector.DEFAULT_BACK_CAMERA
+         }
+            startcamera()
+        }
+
         cameraExecutor  = Executors.newSingleThreadExecutor()
         registrationManager.launch(Manifest.permission.CAMERA)
         return binding.root
@@ -115,6 +130,16 @@ class cameraFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
+    private  fun autoFlash(){
+        binding.root.postDelayed({
+            binding.root.foreground = ColorDrawable(Color.WHITE)
+
+            binding.root.postDelayed({
+                binding.root.foreground = null
+            },50)
+        },100)
+    }
 
     private fun startcamera(){
 //        if(checkPermisssion()){
@@ -130,7 +155,6 @@ class cameraFragment : Fragment() {
 
                  imageCapture = ImageCapture.Builder().build()
 
-                 cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
                 try {
                     cameraProvider.unbindAll()
                     cameraProvider.bindToLifecycle(this, cameraSelector!!,preview,imageCapture)
@@ -141,10 +165,10 @@ class cameraFragment : Fragment() {
 
     }
 
-    private  fun checkPermisssion():Boolean =
-        REQUEST_PERMISSSION.all {permission->
-            ContextCompat.checkSelfPermission(requireActivity(),permission) == PackageManager.PERMISSION_GRANTED
-        }
+//    private  fun checkPermisssion():Boolean =
+//        REQUEST_PERMISSSION.all {permission->
+//            ContextCompat.checkSelfPermission(requireActivity(),permission) == PackageManager.PERMISSION_GRANTED
+//        }
 
 
 
@@ -161,9 +185,6 @@ class cameraFragment : Fragment() {
 
     }
 
-    fun updateCamera(){
-
-    }
 
     companion object{
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
