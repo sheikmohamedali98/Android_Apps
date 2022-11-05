@@ -1,7 +1,6 @@
 package com.example.camerax2.ui
 
 import android.Manifest
-import android.app.Application
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,18 +14,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.camera2.internal.annotation.CameraExecutor
+import com.bumptech.glide.request.RequestOptions
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
-import androidx.camera.core.impl.PreviewConfig
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.view.setPadding
+import com.bumptech.glide.Glide
 import com.example.camerax2.R
 import com.example.camerax2.databinding.FragmentCameraBinding
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -36,7 +38,10 @@ class cameraFragment : Fragment() {
 
     private lateinit var binding: FragmentCameraBinding
     private lateinit var cameraExecutor: ExecutorService
-    private var imageCapture:ImageCapture? = null
+    private var imageCapture: ImageCapture? = null
+    private  var cameraSelector: CameraSelector? = null
+    private var lensFacing: Int = CameraSelector.LENS_FACING_BACK
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -58,9 +63,12 @@ class cameraFragment : Fragment() {
             }
         }
 
-        binding.imageCaptureButton.setOnClickListener {
+        binding.imageButton.setOnClickListener {
             takePhoto()
         }
+//        binding.cameraSwithc.setOnClickListener {
+//          cameraSelector =  CameraSelector.DEFAULT_FRONT_CAMERA
+//        }
         cameraExecutor  = Executors.newSingleThreadExecutor()
         registrationManager.launch(Manifest.permission.CAMERA)
         return binding.root
@@ -76,7 +84,7 @@ class cameraFragment : Fragment() {
             put(MediaStore.MediaColumns.DISPLAY_NAME,name.toString())
             put(MediaStore.MediaColumns.MIME_TYPE,"image/jpeg")
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraXImage")
             }
         }
 //
@@ -90,6 +98,9 @@ class cameraFragment : Fragment() {
             ContextCompat.getMainExecutor(requireContext()),
             object :ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+
+                    val savedUri = outputFileResults.savedUri ?: Uri.fromFile(File("Pictures/CameraXImage"))
+                    setThumnail(savedUri)
                     val path = "Photo stored in ${outputFileResults.savedUri}"
                     Toast.makeText(activity, path, Toast.LENGTH_SHORT).show()
                 }
@@ -119,19 +130,14 @@ class cameraFragment : Fragment() {
 
                  imageCapture = ImageCapture.Builder().build()
 
-                val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+                 cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
                 try {
                     cameraProvider.unbindAll()
-                    cameraProvider.bindToLifecycle(this, cameraSelector,preview,imageCapture)
+                    cameraProvider.bindToLifecycle(this, cameraSelector!!,preview,imageCapture)
                 }catch (exc: Exception) {
                     Log.e("TAG", "Use case binding failed", exc)
                 }
             },ContextCompat.getMainExecutor(requireContext()))
-
-//        }else{
-//
-//            Toast.makeText(activity, "Require Camera Permission", Toast.LENGTH_SHORT).show()
-//        }
 
     }
 
@@ -142,6 +148,22 @@ class cameraFragment : Fragment() {
 
 
 
+    private fun setThumnail(uri: Uri){
+
+        binding?.imageSave?.let { photoViewButton->
+            photoViewButton.post{
+                photoViewButton.setPadding(resources.getDimension(R.dimen.stroke_small).toInt())
+                Glide.with(photoViewButton).load(uri).apply(RequestOptions.circleCropTransform())
+                    .into(photoViewButton)
+            }
+
+        }
+
+    }
+
+    fun updateCamera(){
+
+    }
 
     companion object{
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
