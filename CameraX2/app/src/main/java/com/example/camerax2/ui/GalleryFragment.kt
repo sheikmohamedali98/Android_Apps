@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.navigation.fragment.findNavController
 import com.example.camerax2.R
 import com.example.camerax2.adapter.GalleryAdapter
 import com.example.camerax2.databinding.FragmentGalleryBinding
@@ -44,6 +45,10 @@ private lateinit var binding: FragmentGalleryBinding
 //        letovi.forEach{ Log.i("Pic Path","file -> ${it}") }
 
 
+        binding.backBtn.setOnClickListener {
+            Toast.makeText(activity, "back Navigate", Toast.LENGTH_SHORT).show()
+            findNavController().navigateUp()
+        }
 
 //        val files = File("//media/external/images/media/").listFiles() as? Array<File>
 //        println("\n\n\n\n${files.toString()}\n\n\n")

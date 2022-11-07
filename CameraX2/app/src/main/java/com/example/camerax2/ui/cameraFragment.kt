@@ -45,6 +45,7 @@ class cameraFragment : Fragment() {
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector? = null
     private lateinit var viewModel:CameraViewModel
+    private  var flashMode:Int = 0
 
 
     override fun onCreateView(
@@ -79,10 +80,11 @@ class cameraFragment : Fragment() {
                     ).show()
                 }
             }
+         flashMode = ImageCapture.FLASH_MODE_OFF
 
         viewModel.preview.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 
-            binding.imageSave = it
+//            binding.imageSave = it
         })
         binding.imageButton.setOnClickListener {
             takePhoto()
@@ -103,6 +105,18 @@ class cameraFragment : Fragment() {
 
         binding.imageSave.setOnClickListener {
             findNavController().navigate(R.id.action_cameraFragment_to_galleryFragment)
+        }
+        binding.flashBtn.setOnClickListener {
+            Toast.makeText(activity, flashMode.toString(), Toast.LENGTH_SHORT).show()
+
+            if(cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA){
+                flashMode = when (flashMode) {
+                    ImageCapture.FLASH_MODE_OFF -> ImageCapture.FLASH_MODE_ON
+                    ImageCapture.FLASH_MODE_ON -> ImageCapture.FLASH_MODE_AUTO
+                    ImageCapture.FLASH_MODE_AUTO -> ImageCapture.FLASH_MODE_OFF
+                    else -> {ImageCapture.FLASH_MODE_ON}
+                }
+            }
         }
         cameraExecutor = Executors.newSingleThreadExecutor()
         registrationManager.launch(Manifest.permission.CAMERA)
@@ -137,7 +151,6 @@ class cameraFragment : Fragment() {
                     val savedUri =
                         outputFileResults.savedUri ?: Uri.fromFile(File("Pictures/CameraXImage"))
                     setThumnail(savedUri)
-//                    println("\n\n\n\n${savedUri.toString()}\n\n\n\n")
                     val path = "Photo stored in ${outputFileResults.savedUri}"
                     Toast.makeText(activity, path, Toast.LENGTH_SHORT).show()
                 }
@@ -174,11 +187,16 @@ class cameraFragment : Fragment() {
                 it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
             }
 
-            imageCapture = ImageCapture.Builder().build()
+//                .setFlashMode(ImageCapture.FLASH_MODE_OFF)
+            Toast.makeText(context, flashMode.toString(), Toast.LENGTH_SHORT).show()
+            imageCapture = ImageCapture.Builder().setFlashMode(flashMode).build()
 
             try {
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(this, cameraSelector!!, preview, imageCapture)
+               val camera =  cameraProvider.bindToLifecycle(this, cameraSelector!!, preview, imageCapture)
+//                if(camera.cameraInfo.hasFlashUnit()){
+//                    camera.cameraControl.enableTorch(true)
+//                }
             } catch (exc: Exception) {
                 Log.e("TAG", "Use case binding failed", exc)
             }
