@@ -23,6 +23,8 @@ import java.io.File
 
 
 class ProfileFragment : Fragment() {
+    private val PROFILE_PICTURE_KEY = "PROFILE_PIC_PATH"
+    private val SHARED_PREF = "UserPreference"
 
     private lateinit var  binding: FragmentProfileBinding
     private lateinit var viewModel:MovieProfileViewModel
@@ -35,7 +37,7 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater,container,false)
         viewModel = ViewModelProvider(this)[MovieProfileViewModel::class.java]
-        sharedPreferences =  requireContext().getSharedPreferences("FileUri",Application.MODE_PRIVATE)
+        sharedPreferences =  requireContext().getSharedPreferences(SHARED_PREF,Application.MODE_PRIVATE)
 
         binding.profileImage.setOnClickListener {
             Toast.makeText(activity, "profile clicked ", Toast.LENGTH_SHORT).show()
@@ -47,6 +49,19 @@ class ProfileFragment : Fragment() {
                     startForProfileImageResult.launch(intent)
                 }
         }
+        //default
+        //if old pic exist
+        sharedPreferences.getString(PROFILE_PICTURE_KEY,"").also {
+                path->
+            path?.let{
+                if (path.isNotEmpty()) {
+                    //
+                    val fileUri = Uri.fromFile(File(path))
+                    binding.profileImage.setImageURI(fileUri)
+                }
+            }
+        }
+
 
         return binding.root
     }
@@ -58,15 +73,15 @@ class ProfileFragment : Fragment() {
 
             if (resultCode == Activity.RESULT_OK) {
                 val fileUri = data?.data!!
-                val fileUri1 = Uri.fromFile(File(fileUri.path.toString()))
 
-                Toast.makeText(activity, fileUri.toString(), Toast.LENGTH_SHORT).show()
-//                val file = File(requireContext().filesDir.toURI())
-               val editor =  sharedPreferences.edit()
-                editor.putString("string",fileUri1.toString())
-                editor.commit()
-                println("\n\n\n\n\n${fileUri1}\n\n\n\n\n")
-                binding.profileImage.setImageURI(fileUri1)
+//                Toast.makeText(activity, fileUri.path.toString(), Toast.LENGTH_SHORT).show()
+
+                sharedPreferences.edit().also {editor->
+                    editor.putString(PROFILE_PICTURE_KEY, fileUri.path.toString())
+                    editor.commit()
+                }
+
+                binding.profileImage.setImageURI(fileUri)
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             } else {
