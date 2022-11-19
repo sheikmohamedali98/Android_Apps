@@ -1,7 +1,9 @@
 package com.example.newsapp.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +18,14 @@ class VideoAdapter(private  val onClickListener: OnClickListener) : ListAdapter<
         RecyclerView.ViewHolder(binding.root) {
         fun bind(domainData: DomainData) {
             binding.viewModel = domainData
+            binding.share.setOnClickListener {
+                val intent = Intent().apply{
+                    this.action = Intent.ACTION_SEND
+                    this.putExtra(Intent.EXTRA_TEXT,domainData.url)
+                    this.type = "text/plain"
+                }
+
+            }
 //            binding.cardView.setOnClickListener{
 ////                WebViewViewModel.url = domainData.url.toString()
 //
@@ -51,6 +61,7 @@ class VideoAdapter(private  val onClickListener: OnClickListener) : ListAdapter<
         holder.itemView.setOnClickListener {
             onClickListener.onClick(data)
         }
+
         holder.bind(data)
     }
 

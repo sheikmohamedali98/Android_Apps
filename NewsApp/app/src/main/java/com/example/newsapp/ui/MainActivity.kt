@@ -3,6 +3,7 @@ package com.example.newsapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -12,10 +13,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
+        setContentView(R.layout.activity_main)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.drawable.newspaper_a)
-//        supportActionBar?.subtitle = "welcome"
-        setContentView(R.layout.activity_main)
+        supportActionBar?.subtitle = "welcome"
+        Toast.makeText(this, "sdfjllkds", Toast.LENGTH_SHORT).show()
 //        val navController = this.findNavController(androidx.navigation.fragment.R.id.nav_host_fragment_container)
 //        NavigationUI.setupActionBarWithNavController(this,navController)
     }

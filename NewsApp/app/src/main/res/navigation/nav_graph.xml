@@ -10,7 +10,6 @@
         android:name="com.example.newsapp.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-
         <action
             android:id="@+id/action_homeFragment_to_detailNewsFragment"
             app:destination="@id/detailNewsFragment" />
@@ -20,12 +19,12 @@
         android:name="com.example.newsapp.ui.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-        <action
-            android:id="@+id/action_detailFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
         <argument
             android:name="webView"
             app:argType="com.example.newsapp.domain.DomainData" />
+        <action
+            android:id="@+id/action_detailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailNewsFragment"

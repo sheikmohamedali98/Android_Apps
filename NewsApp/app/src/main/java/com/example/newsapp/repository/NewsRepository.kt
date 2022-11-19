@@ -1,14 +1,12 @@
 package com.example.newsapp.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.newsapp.api.NewsApi
-import com.example.newsapp.api.RetrofitInstance
+import com.example.newsapp.database.DatabaseData
 import com.example.newsapp.database.NewsDataBase
 import com.example.newsapp.database.asDomainModel
 import com.example.newsapp.domain.DomainData
-import com.example.newsapp.domain.weather.WeatherResponse
 import com.example.newsapp.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -32,7 +30,7 @@ class NewsRepository(private  val database:NewsDataBase) {
 
             if(newsList.isSuccessful){
                 if (list != null) {
-                    println("\n\n\n\n${newsList.body()?.data}\n\n\n\n")
+                    database.dataDao.deletNews()
                     database.dataDao.insertNews(*list.asDatabaseModel().toTypedArray())
                 }
             }
@@ -57,10 +55,12 @@ class NewsRepository(private  val database:NewsDataBase) {
 //        }
 //    }
 
-    suspend fun getWeatherList(cityName:String):WeatherResponse{
-   return RetrofitInstance.api.getWeather(q = cityName)
+    fun searchDatabase(subQuery:String):List<DatabaseData>{
+        return  database.dataDao.searchDatabase(subQuery)
+        }
 
-    }
+
+
 
 }
 
