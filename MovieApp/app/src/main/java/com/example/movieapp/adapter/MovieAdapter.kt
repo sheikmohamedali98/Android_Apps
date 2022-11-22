@@ -10,6 +10,7 @@ import com.example.movieapp.domin.MovieDomine
 import com.example.movieapp.network.MovieResponse
 
 class MovieAdapter(private  val onClickListener: OnClickListener):ListAdapter<MovieDomine,MovieAdapter.ItemViewHolder>(DifferItemCallback()) {
+
     class ItemViewHolder(private val binding: CardLayoutBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(movieDomine:MovieDomine){
             binding.movie = movieDomine

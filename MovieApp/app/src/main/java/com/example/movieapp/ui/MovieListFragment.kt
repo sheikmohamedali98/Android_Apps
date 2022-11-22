@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -19,8 +20,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.movieapp.R
 import com.example.movieapp.adapter.MovieAdapter
 import com.example.movieapp.databinding.FragmentMovieListBinding
+import com.example.movieapp.networkconnectivity.ConnectionObserver
+import com.example.movieapp.networkconnectivity.NetworkConnectionObserver
 import com.example.movieapp.viewModel.MovieListViewModel
 import com.example.movieapp.viewModel.MovieViewModelFactory
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import java.io.File
 
 
@@ -29,6 +34,7 @@ class MovieListFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
     private lateinit var viewModel: MovieListViewModel
     private lateinit var adapter: MovieAdapter
+    private lateinit var connectivityObserver:ConnectionObserver
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,25 +44,26 @@ class MovieListFragment : Fragment() {
         binding = FragmentMovieListBinding.inflate(inflater, container, false)
         val application = requireNotNull(requireActivity().application)
         val factory = MovieViewModelFactory(application)
+        connectivityObserver = NetworkConnectionObserver(application)
         viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        viewModel.getMovieFromRepository()
+
 
         adapter = MovieAdapter(MovieAdapter.OnClickListener {
             viewModel.displayData(it)
         })
         binding.recycleview.adapter = adapter
         //bottom navigate
-
-
         viewModel.listOfMovie.observe(viewLifecycleOwner, Observer {
-
             if (it != null) {
                 binding.pogress.isVisible = false
                 adapter.submitList(it)
             }
         })
+
+
 
         viewModel.navigateToSelectedMovies.observe(viewLifecycleOwner, Observer {
             if (it != null) {
@@ -65,6 +72,36 @@ class MovieListFragment : Fragment() {
                 viewModel.displayProperties()
             }
         })
+
+
+
+        connectivityObserver.observer().onEach {
+            when(it.toString()){
+                "Available"->{
+                        Toast.makeText(activity, "Available", Toast.LENGTH_SHORT).show()
+                    binding.animation.isVisible = false
+                    binding.pogress.isVisible = false
+                        binding.recycleview.isVisible = true
+                        viewModel.getMovieFromRepository()
+
+                }
+                "Unavailable"->{
+
+                }
+                "Losing"->{
+
+                }
+                "Lost" -> {
+                    Toast.makeText(activity, "Lost", Toast.LENGTH_SHORT).show()
+                    binding.pogress.isVisible = true
+                    binding.animation.isVisible = true
+                    binding.recycleview.isVisible = false
+                    binding.animation.setAnimation(R.raw.lost_connection)
+                    binding.animation.playAnimation()
+                }
+            }
+        }.launchIn(lifecycleScope)
+
 
         setupMenu()
         return binding.root

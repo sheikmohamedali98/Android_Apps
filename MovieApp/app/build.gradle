@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.movieapp"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -90,6 +90,8 @@ dependencies {
 
     //round image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+//lotties
+    implementation'com.airbnb.android:lottie:3.7.0'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
