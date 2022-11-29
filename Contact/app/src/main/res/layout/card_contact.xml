@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="contact"
+            type="com.example.contact.database.Contact" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_Contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/person_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="4dp"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="1dp"
+               image_url="@{contact.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/person_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="1dp"
+                android:layout_toEndOf="@+id/person_image"
+                android:text="@{contact.firstname}"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/phone_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/person_name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@+id/person_image"
+                android:text="@{contact.phonenumber}" />
+
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/person_name"
+                android:layout_alignBottom="@+id/person_image"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toEndOf="@+id/person_image"
+                android:text="@{contact.company}" />
+
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</layout>
