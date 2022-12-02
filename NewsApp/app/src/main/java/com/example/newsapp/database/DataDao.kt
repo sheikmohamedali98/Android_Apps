@@ -25,7 +25,7 @@ interface DataDao {
     fun deletNews()
 
     @Query("SELECT * FROM  news_database WHERE  title Like :subQuery")
-    fun searchDatabase(subQuery:String):List<DatabaseData>
+    fun searchDatabase(subQuery:String):LiveData<List<DatabaseData>>
 
 
 }

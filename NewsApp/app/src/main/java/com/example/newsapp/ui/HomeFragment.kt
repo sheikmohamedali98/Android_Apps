@@ -3,6 +3,7 @@ package com.example.newsapp.ui
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Bundle
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.app.ActivityCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.newsapp.R
 import com.example.newsapp.adapter.VideoAdapter
 import com.example.newsapp.api.NewsFilter
+import com.example.newsapp.database.asDomainModel
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.domain.DomainData
 import com.example.newsapp.util.LoactionPermission
@@ -46,7 +49,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        var isSearch:Boolean = false
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val factory = HomeViewModelFactory(requireActivity().application)
@@ -59,7 +61,14 @@ class HomeFragment : Fragment() {
         adapter = VideoAdapter(VideoAdapter.OnClickListener {
             viewModel.displayData(it)
         })
-        binding.recycleView.adapter = adapter
+        binding.recyclerView.adapter = adapter
+        adapter.setShareClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT,it)
+            (requireActivity() as MainActivity).startActivityFromFragment(this,intent,100)
+        }
 
 
         viewModel.navigateToSelectedNews.observe(viewLifecycleOwner, Observer {
@@ -76,17 +85,13 @@ class HomeFragment : Fragment() {
 
 
         viewModel.listOfNews.observe(viewLifecycleOwner) {
-//            if(it.isEmpty()){
-//                if(isSearch){
-//                    adapter.submitList(it)
-//                }
-//                isSearch = false
-//            }else{
-//
-//                adapter.submitList(it)
-//            }
 
-            adapter.submitList(it)
+            if(it!= null){
+                adapter.submitList(it)
+                binding.progressBar.visibility = View.GONE
+            }
+
+
         }
         setHasOptionsMenu(true)
 //
@@ -172,19 +177,11 @@ class HomeFragment : Fragment() {
 
     fun searchDatabase(query: String = "leader") {
         val searchQyery = "${query}%"
+       val list =  viewModel.searchDatabase(searchQyery)
+        list.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it.asDomainModel())
+        })
 
-
-        GlobalScope.launch {
-            var temp = viewModel.searchDatabase(searchQyery)
-        }
-
-
-//        viewModel.searchDatabase(searchQyery).observe(this, Observer { list ->
-//            list?.let {
-//                adapter.submitList(it as MutableList<DomainData>)
-//            }
-//
-//        })
     }
 
 

@@ -1,43 +1,31 @@
 package com.example.newsapp.adapter
 
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsapp.databinding.CardLayoutBinding
+import com.example.newsapp.databinding.CardLayoutNewsBinding
 import com.example.newsapp.domain.DomainData
 
 class VideoAdapter(private  val onClickListener: OnClickListener) : ListAdapter<DomainData, VideoAdapter.ViewHolder>(DiffcallBack) {
 
-//    private var clickListener:((domianData:DomainData)->Unit)? = null
+    private var shareClickListener:((url:String)->Unit)? = null
 
-    class ViewHolder(private var binding: CardLayoutBinding) :
+    class ViewHolder(private var binding: CardLayoutNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(domainData: DomainData) {
+        fun bind(domainData: DomainData,shareClickListener:((url:String)->Unit)?) {
             binding.viewModel = domainData
-            binding.share.setOnClickListener {
-                val intent = Intent().apply{
-                    this.action = Intent.ACTION_SEND
-                    this.putExtra(Intent.EXTRA_TEXT,domainData.url)
-                    this.type = "text/plain"
-                }
 
+            binding.share.setOnClickListener {
+                    shareClickListener?.invoke(domainData.url?:"")
             }
-//            binding.cardView.setOnClickListener{
-////                WebViewViewModel.url = domainData.url.toString()
-//
-////                Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_detailFragment)
-//            }
-//            binding.imageView = data.imageUrl.toString()
-//            binding.dateView = data.date
-//            clickListener?.let {
-//                binding.root.setOnClickListener {
-//                    clickListener.invoke(domainData)
-//                }
-//            }
+
         }
     }
 
@@ -53,7 +41,7 @@ class VideoAdapter(private  val onClickListener: OnClickListener) : ListAdapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(CardLayoutBinding.inflate(LayoutInflater.from(parent.context)))
+        return ViewHolder(CardLayoutNewsBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -62,12 +50,16 @@ class VideoAdapter(private  val onClickListener: OnClickListener) : ListAdapter<
             onClickListener.onClick(data)
         }
 
-        holder.bind(data)
+        holder.bind(data,shareClickListener)
     }
 
 //    fun setOnclickListener(clickListener:((domianData:DomainData)->Unit)){
 //        this.clickListener = clickListener
 //    }
+
+    fun setShareClickListener(shareClickListener: ((url: String) -> Unit)?){
+        this.shareClickListener = shareClickListener
+    }
 class OnClickListener(val clickListener:(dominData:DomainData)->Unit){
     fun onClick(domianData: DomainData) = clickListener(domianData)
 }

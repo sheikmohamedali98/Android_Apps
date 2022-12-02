@@ -55,7 +55,7 @@ class NewsRepository(private  val database:NewsDataBase) {
 //        }
 //    }
 
-    fun searchDatabase(subQuery:String):List<DatabaseData>{
+    fun searchDatabase(subQuery:String):LiveData<List<DatabaseData>>{
         return  database.dataDao.searchDatabase(subQuery)
         }
 

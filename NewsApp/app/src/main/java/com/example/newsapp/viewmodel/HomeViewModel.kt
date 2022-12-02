@@ -20,53 +20,6 @@ import retrofit2.Response
 
 class HomeViewModel(application: Application):AndroidViewModel(application) {
 
-//    init {
-//        GlobalScope.launch(Dispatchers.IO) {
-//            try {
-//               val response = WeatherRepository().getWeatherData("12.859373", "80.053387")
-//                response.enqueue(object :Callback<Weather>{
-//                    override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
-//
-//                        print("\n\n\n\n${response.body().toString()} ${response.code()}")
-//                    }
-//
-//                    override fun onFailure(call: Call<Weather>, t: Throwable) {
-//                        TODO("Not yet implemented")
-//                    }
-//
-//                })
-//
-//            }catch (t:Throwable){
-//                println("\n\n\n${t.message}\n\n\n\n")
-//            }
-//        }
-//    }
-//    private val _newsProperties = MutableLiveData<List<Data>?>()
-//
-//    val newsProperties: MutableLiveData<List<Data>?>
-//    get() = _newsProperties
-//
-//
-//
-//    init {
-//        getNewsProperties("all")
-//
-//    }
-//
-//     fun getNewsProperties(filter:String) {
-//        viewModelScope.launch() {
-////            println("\n\n\n\n${filter.value}\n\n\n\n")
-//            val getNewsResponse = NewsApi.retrofitService.getAllNews(filter)
-//            if(getNewsResponse.isSuccessful){
-//                val item =  getNewsResponse.body()?.data
-//               _newsProperties.value = item
-////                println("\n\n\n\n\n${_newsProperties.value}\n\n\n\n\n")
-//            }else{
-//
-//            }
-//
-//        }
-//    }
 
 
 
@@ -151,9 +104,9 @@ class HomeViewModel(application: Application):AndroidViewModel(application) {
 //        }
 //    }
 
-    fun searchDatabase(searchQuery:String):List<DatabaseData>{
+    fun searchDatabase(searchQuery:String):LiveData<List<DatabaseData>>{
+        return    newsRepository.searchDatabase(searchQuery)
 
-        return  newsRepository.searchDatabase(searchQuery)
     }
 
 //    getWeather(){
