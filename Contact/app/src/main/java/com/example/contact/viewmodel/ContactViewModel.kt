@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import androidx.room.Query
 import com.example.contact.database.Contact
 import com.example.contact.database.ContactDatabase
 import com.example.contact.repository.ContactRepository
@@ -48,4 +47,5 @@ class ContactViewModel(application: Application):AndroidViewModel(application) {
             repository.deleteSingleContact(contact)
         }
     }
+
 }

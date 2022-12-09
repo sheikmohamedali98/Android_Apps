@@ -27,4 +27,19 @@ class ContactRepository (private val contactDatabase: ContactDatabase){
     suspend fun deleteSingleContact(contact: Contact){
         contactDatabase.contactDao().deleteSingleContact(contact)
     }
+
+    fun getContact(id:Int):LiveData<Contact>{
+        return  contactDatabase.contactDao().getContact(id)
+    }
+
+    suspend fun updateContact(contact: Contact){
+        contactDatabase.contactDao().updateContact(contact)
+    }
+    suspend fun updateFavorite(isChecked:Boolean,id:Int){
+        contactDatabase.contactDao().updateFavorite(isChecked,id)
+    }
+
+    fun getfavoriteContact(isChecked: Boolean):LiveData<List<Contact>>{
+        return  contactDatabase.contactDao().getFavoriteContact(isChecked)
+    }
 }

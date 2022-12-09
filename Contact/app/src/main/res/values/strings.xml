@@ -3,4 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">save</string>
+    <string name="write_a_message">write_a_message</string>
+    <string name="result_not_found">Result Not Found</string>
+    <string name="update">Update</string>
+    <string name="email_id">Email Id</string>
+    <string name="company_name">Company Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="person_name">Person Name</string>
+    <string name="date_of_birth">Date Of Birth</string>
 </resources>

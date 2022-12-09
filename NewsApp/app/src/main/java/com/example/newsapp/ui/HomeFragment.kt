@@ -87,10 +87,11 @@ class HomeFragment : Fragment() {
         viewModel.listOfNews.observe(viewLifecycleOwner) {
 
             if(it!= null){
+                binding.progressBar.visibility = View.INVISIBLE
+                binding.recyclerView.isVisible = true
                 adapter.submitList(it)
-                binding.progressBar.visibility = View.GONE
-            }
 
+            }
 
         }
         setHasOptionsMenu(true)
@@ -164,10 +165,19 @@ class HomeFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         viewModel.updateFilter(when (item.itemId) {
-            R.id.sport -> NewsFilter.SPORT
-            R.id.allNews -> NewsFilter.ALL
-            R.id.technology -> NewsFilter.TECHNOLOGY
-            else -> NewsFilter.ALL
+            R.id.sport -> {
+                loadingVisiblitiy()
+                NewsFilter.SPORT}
+            R.id.allNews ->{
+                loadingVisiblitiy()
+                NewsFilter.ALL}
+            R.id.technology -> {
+                loadingVisiblitiy()
+                NewsFilter.TECHNOLOGY
+            }
+            else -> {
+               loadingVisiblitiy()
+                NewsFilter.ALL}
         }
         )
         return true
@@ -175,7 +185,7 @@ class HomeFragment : Fragment() {
 
 
 
-    fun searchDatabase(query: String = "leader") {
+   private fun searchDatabase(query: String = "leader") {
         val searchQyery = "${query}%"
        val list =  viewModel.searchDatabase(searchQyery)
         list.observe(viewLifecycleOwner, Observer {
@@ -184,6 +194,10 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun loadingVisiblitiy(){
+        binding.progressBar.isVisible = true
+        binding.recyclerView.isVisible = false
+    }
 
 }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/listContactFragment">
 
     <fragment
         android:id="@+id/deatilFragment"
@@ -11,18 +11,85 @@
         android:label="fragment_deatil"
         tools:layout="@layout/fragment_deatil" >
         <action
-            android:id="@+id/action_deatilFragment_to_listFragment"
-            app:destination="@id/listFragment"
-            app:popUpTo="@id/listFragment" />
+            android:id="@+id/action_deatilFragment_to_listContactFragment"
+            app:destination="@id/listContactFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/messageFragment"
+        android:name="com.example.contact.ui.MessageFragment"
+        android:label="fragment_message"
+        tools:layout="@layout/fragment_message" >
+        <argument
+            android:name="phone_number"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/listFragment"
-        android:name="com.example.contact.ui.listFragment"
-        android:label="fragment_list"
-        tools:layout="@layout/fragment_list" >
+        android:id="@+id/listContactFragment"
+        android:name="com.example.contact.ui.ListContactFragment"
+        android:label="ListContactFragment" >
         <action
-            android:id="@+id/action_listFragment_to_deatilFragment"
+            android:id="@+id/action_listContactFragment_to_deatilFragment"
             app:destination="@id/deatilFragment"
-            app:popUpToInclusive="false" />
+            app:enterAnim="@anim/slide_in_bottom" />
+        <action
+            android:id="@+id/action_listContactFragment_to_messageFragment"
+            app:destination="@id/messageFragment" />
+        <action
+            android:id="@+id/action_listContactFragment_to_contactDetailFragment"
+            app:destination="@id/contactDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.contact.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+
+        <action
+            android:id="@+id/action_searchFragment_to_contactDetailFragment2"
+            app:destination="@id/contactDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="com.example.contact.ui.GroupFragment"
+        android:label="fragment_group"
+        tools:layout="@layout/fragment_group" />
+    <fragment
+        android:id="@+id/contactDetailFragment"
+        android:name="com.example.contact.ui.ContactDetailFragment"
+        android:label="fragment_contact_detail"
+        tools:layout="@layout/fragment_contact_detail" >
+        <action
+            android:id="@+id/action_contactDetailFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <argument
+            android:name="current_contact"
+            app:argType="integer" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.contact.ui.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <argument
+            android:name="update_contact"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteContactFragment"
+        android:name="com.example.contact.ui.FavoriteContactFragment"
+        android:label="fragment_favorite_contact"
+        tools:layout="@layout/fragment_favorite_contact" >
+
+        <action
+            android:id="@+id/action_favoriteContactFragment_to_contactDetailFragment"
+            app:destination="@id/contactDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

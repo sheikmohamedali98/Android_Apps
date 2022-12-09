@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id  'androidx.navigation.safeargs'
 }
 
 android {
@@ -65,8 +66,15 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.4.3'
     kapt 'androidx.room:room-compiler:2.4.3'
 
+//Scrollbar View
+    implementation 'me.zhanghai.android.fastscroll:library:1.1.8'
+
     //swip to delete
 
+
+    //textDrawable
+
+    implementation 'com.github.alvinhkh:TextDrawable:c1c2b5b'
     //viewmodel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'

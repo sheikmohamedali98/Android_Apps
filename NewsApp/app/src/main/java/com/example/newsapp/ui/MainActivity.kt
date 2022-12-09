@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.drawable.newspaper_a)
         supportActionBar?.subtitle = "welcome"
-        Toast.makeText(this, "sdfjllkds", Toast.LENGTH_SHORT).show()
 //        val navController = this.findNavController(androidx.navigation.fragment.R.id.nav_host_fragment_container)
 //        NavigationUI.setupActionBarWithNavController(this,navController)
     }

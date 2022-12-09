@@ -27,8 +27,6 @@ class DetailNewsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val application = requireNotNull(activity).application
-//        lateinit var args: DetailNewsFragmentArgs
-
 
         val args = DetailNewsFragmentArgs.fromBundle(requireArguments()).newsInformation
 

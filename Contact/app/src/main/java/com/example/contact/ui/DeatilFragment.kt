@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.contact.R
 import com.example.contact.database.Contact
@@ -82,41 +84,28 @@ class DeatilFragment : Fragment() {
             }
         }
 
-//    val textWatcher = object :TextWatcher{
-//        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//        }
-//
-//        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//            val personName = binding.personEdit.text.toString()
-//            val number = binding.phoneEdit.text.toString()
-//            val company = binding.companyName.text.toString()
-//
-//            binding.button.isEnabled = (personName.isNotEmpty()&&!number.isNotEmpty()&&!company.isNotEmpty())
-//        }
-//
-//        override fun afterTextChanged(s: Editable?) {
-//        }
-//
-//    }
 
-    //
     private fun addContact() {
         val personName = binding.personEdit.text.toString()
         val number = binding.phoneEdit.text.toString()
         val companyName = binding.companyName.text.toString()
+        val emailId = binding.emailId.text.toString()
         if (personName.isEmpty() && number.isEmpty() && companyName.isEmpty()) {
 
-            Toast.makeText(activity, "failed to save", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Enter Valid Input", Toast.LENGTH_SHORT).show()
 
 
         } else {
+
             val contact = Contact(0, firstname = personName,
                 phonenumber = number,
-                company = companyName, imageUrl = imageUrl)
+                company = companyName, imageUrl = imageUrl, email = emailId)
 
             viewmodel.addContact(contact)
             Toast.makeText(activity, "Saved Contact ", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_deatilFragment_to_listFragment)
+            findNavController().navigateUp()
+//            val controller: NavController = this.findNavController()
+//            controller.popBackStack(R.id.listContactFragment, true);
 
         }
     }
