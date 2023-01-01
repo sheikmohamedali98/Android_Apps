@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainFragment">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/margin"
+        android:textSize="@dimen/time_size"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/select_time"
+        android:layout_margin="@dimen/margin"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/yellow"
+        android:layout_height="wrap_content"
+        android:text="@string/select_time"
+        />
+    <Button
+        android:id="@+id/set_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:backgroundTint="@color/green"
+        android:text="@string/set_alarm"
+        />
+    <Button
+        android:id="@+id/cancel_alarm"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_alarm"
+        android:backgroundTint="@color/red"
+        />
+</androidx.appcompat.widget.LinearLayoutCompat>
